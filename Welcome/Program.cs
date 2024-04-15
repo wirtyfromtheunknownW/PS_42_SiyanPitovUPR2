@@ -1,23 +1,63 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Welcome.Model;
-using Welcome.View;
 using Welcome.ViewModel;
+using Welcome.View;
+using Welcome.Others;
 
 namespace Welcome
 {
     internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-            User obj = new User("wirt", "1234", Others.UserRolesEnum.ADMIN);
-            UserViewModel newobj = new UserViewModel(obj);
-            UserView view = new UserView(newobj);
+            User user = new User
+            {
+                Name = "Siyan Pitov",
+                Password = "123456789",
+                Role = UserRolesEnum.ADMIN
+            };
 
-            view.Display();
+            UserViewModel userViewModel = new UserViewModel(user);
+
+            UserView userView = new UserView(userViewModel);
+
+            userView.Display();
+
+            Console.ReadKey();
+
+            try
+            {
+                var user1 = new User
+                {
+                    Name = "krumsata",
+                    Password = "123456789",
+                    Role = UserRolesEnum.STUDENT
+                };
+
+                var viewModel = new UserViewModel(user1);
+
+                var view = new UserView(viewModel);
+
+                view.Display();
+
+                view.DisplayError();
+            }
+            catch (Exception e)
+            {
+                ActionOnError log = LogError;
+
+                log(e);
+            }
+            finally
+            {
+                Console.WriteLine("Executed in any case!");
+            }
+
+            static void LogError(Exception error)
+            {
+                Console.WriteLine($"Error occurred: {error.Message}");
+            }
+
         }
     }
 }
