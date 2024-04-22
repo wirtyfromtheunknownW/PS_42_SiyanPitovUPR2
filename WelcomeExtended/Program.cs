@@ -72,7 +72,7 @@ namespace Welcome
 
             if (isValidUser)
             {
-                User user = userData.GetUser(username, password);
+                User user1 = userData.GetUser(username, password);
 
                 if (user != null)
                 {

@@ -26,7 +26,7 @@ namespace WelcomeExtended.Data
         {
             _users.Remove(user);
         }
-        public bool ValidateUser(string name, string password)
+        public bool ValidateUser( string name, string password)
         {
             foreach (var user in _users)
             {

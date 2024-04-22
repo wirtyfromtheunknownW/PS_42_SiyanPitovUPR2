@@ -9,7 +9,7 @@ namespace Welcome.Model
 {
     public class User
     {
-        public int Id;
+        public virtual int Id { get;  set; }
         public DateTime Expires;
 
         public string Name { get; set; }

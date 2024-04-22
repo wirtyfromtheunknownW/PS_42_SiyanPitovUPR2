@@ -10,24 +10,36 @@ namespace WelcomeExtended.Helpers
 {
     static class UserHelper
     {
-        private static object userDataInstance;
+        private static object userDataInstance = new UserData();
 
         public static string ToString(User user)
         {
             return $"User ID: {user.Id}, Name: {user.Name}, Role: {user.Role}";
         }
-        public static string ValidateCredentials(User user, string name, string password)
+        public static bool ValidateCredentials(UserData user, string name, string password)
         {
             if (string.IsNullOrWhiteSpace(name))
             {
-                return "The name cannot be empty";
+                Console.WriteLine( "The name cannot be empty");
+                return false ;
             }
 
             if (string.IsNullOrWhiteSpace(password))
             {
-                return "The password cannot be empty";
+                Console.WriteLine("The password cannot be empty");
+                return false;
             }
-            return userDataInstance.ValidateUser(user, name, password);
+            bool isValid = user.ValidateUser(name, password);
+            if ((isValid))
+            {
+                Console.WriteLine("success");
+                return true;
+                
+            }
+            else {
+                Console.WriteLine("The name or password are wrong ");
+                return false;
+            }
         }
 
         public static User GetUser(User user, string name, string password)

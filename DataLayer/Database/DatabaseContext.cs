@@ -21,7 +21,7 @@ namespace DataLayer.Database
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<DatabaseUser>().Property(e => e.Id).ValueGeneratedOnAdd;
+            modelBuilder.Entity<DatabaseUser>().Property(e => e.Id).ValueGeneratedOnAdd();
 
             var user = new DatabaseUser()
             {
@@ -33,7 +33,7 @@ namespace DataLayer.Database
             };
 
             modelBuilder.Entity<DatabaseUser>()
-                .HashData(user);
+                .HasData(user);
         }
 
         public DbSet<DatabaseUser> Users { get; set; }

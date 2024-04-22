@@ -8,7 +8,7 @@ using Welcome.ViewModel;
 
 namespace Welcome.View
 {
-    internal class UserView
+    public class UserView
     {
         private UserViewModel _viewModel;
         public UserView(UserViewModel viewModel)
